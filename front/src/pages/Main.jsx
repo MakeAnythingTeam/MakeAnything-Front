@@ -5,10 +5,8 @@ import SlideShow from '../components/SlideShow'
 
 export default function Main() {
     
-
     return (
         <div>
-            헤더
             <SlideShow/>
         </div>
     );
