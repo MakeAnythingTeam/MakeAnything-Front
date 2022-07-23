@@ -64,7 +64,7 @@ const Container = styled.div`
     .slick-prev {
         z-index: 1;
         left: 2%;
-        opaicty: 1;
+        opacity: 1;
         cursor: pointer;
       }
     .slick-prev:before {
