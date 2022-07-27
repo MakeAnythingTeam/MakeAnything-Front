@@ -1,12 +1,22 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
+import { ReactComponent as CheckedIcon} from "../assets/bookmarkChecked.svg";
+import { ReactComponent as UncheckedIcon} from "../assets/bookmarkUnchecked.svg";
 
 export default function Favorite({ index, img_path, model_name, model_price }) {
+
+    const [bookmarkIcon, setbookmarkIcon] = useState(true);
 
     return (
         <FavoriteContainer key={index}>
             <FavoriteButton>
-                <FavoriteImage src={img_path} alt="북마크"></FavoriteImage>
+                <BookmarkWrap>
+                <button
+                        onClick={() => setbookmarkIcon(!bookmarkIcon)}
+                />
+                {bookmarkIcon === true ?  <CheckedIcon/> : <UncheckedIcon/>}
+                </BookmarkWrap>
+                <FavoriteImage src={img_path} alt="북마크" />
             </FavoriteButton>
             <FavoriteName>{model_name}</FavoriteName>
             <FavoritePrice>{model_price}</FavoritePrice>
@@ -17,12 +27,24 @@ export default function Favorite({ index, img_path, model_name, model_price }) {
 
 const FavoriteContainer = styled.div`
       /* font-family: 'Pretendard'; */
-    display: inline-block; 
+    display: inline-block;
 `;
 
+const BookmarkWrap = styled.label`
+    margin-left: 11rem;
+    cursor: pointer;
+    position: absolute;
+    
+    button {
+        display: none;
+    }
+`;
+
+
 const FavoriteButton = styled.button`
-    width: 13.5rem;
-    height: 13.5rem;
+    width: 13rem;
+    height: 13rem;
+    position: relative;
     margin: 0.2rem 1rem;
     border: none;
     padding: 0;
@@ -31,8 +53,8 @@ const FavoriteButton = styled.button`
 `;
 
 const FavoriteImage = styled.img`
-    width: 13.3rem;
-    height: 13.3rem;
+    width: 13rem;
+    height: 13rem;
 `;
 
 const FavoriteName = styled.div`

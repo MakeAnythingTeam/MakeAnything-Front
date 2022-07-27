@@ -7,7 +7,7 @@ import SlideShow from '../components/SlideShow'
 
 export default function Main() {
 
-    const modelsDummy = [
+    const favoriteModelsDummy = [
         {
             img_path: require("../img/img1.png"),
             name: "F/A-18E Super Hornet",
@@ -39,9 +39,9 @@ export default function Main() {
         <div>
             <SlideShow/>
             <TitleText>Favorite Model</TitleText>
-            <FavoriteButton>더보기</FavoriteButton>
+            <MoreButton>더보기</MoreButton>
             <FavoriteDiv>
-                {modelsDummy.map((model, index) => (
+                {favoriteModelsDummy.map((model, index) => (
                     <Favorite
                         key={index}
                         img_path={model.img_path}
@@ -51,6 +51,7 @@ export default function Main() {
                 ))}
             </FavoriteDiv>
             <TitleText>New Model</TitleText>
+            <MoreButton>더보기</MoreButton>
         </div>
     );
 }
@@ -58,20 +59,19 @@ export default function Main() {
 const TitleText = styled.div`
     font-weight: 800;
     font-size: 34px;
-    margin-left: 7.2rem;
+    margin-left: 7.8rem;
     margin-top: 2.5rem;
 `;
 
-const FavoriteButton = styled.button`
+const MoreButton = styled.button`
     border: none;
-    margin-left: 79.5rem;
+    margin-left: 78rem;
     background-color: white;
     font-size: 15px;
     cursor: pointer;
 `;
 
 const FavoriteDiv = styled.div`
-    display: flex;
-    justify-content: center;
-    /* border: 1px solid black; */
+    width: 85%;
+    margin-left: 6.8rem;
 `;
