@@ -2,7 +2,7 @@
 
 import React from 'react';
 import styled from 'styled-components';
-import Favorite from '../components/Favorite';
+import ModelBox from '../components/ModelBox';
 import SlideShow from '../components/SlideShow'
 
 export default function Main() {
@@ -35,23 +35,76 @@ export default function Main() {
         }
     ];
 
+    const newModelsDummy = [
+        {
+            img_path: require("../img/img1.png"),
+            name: "F/A-11E Hornet",
+            price: "$200",
+        },
+        {
+            img_path: require("../img/img2.png"),
+            name: "F/A-12E Hornet",
+            price: "$200",
+        },
+        {
+            img_path: require("../img/img3.png"),
+            name: "F/A-13E Hornet",
+            price: "$200",
+        },
+        {
+            img_path: require("../img/img3.png"),
+            name: "F/A-14E Hornet",
+            price: "$200",
+        },
+        {
+            img_path: require("../img/img1.png"),
+            name: "F/A-15E Hornet",
+            price: "$200",
+        },
+        {
+            img_path: require("../img/img1.png"),
+            name: "F/A-16E Hornet",
+            price: "$200",
+        },
+        {
+            img_path: require("../img/img2.png"),
+            name: "F/A-17E Hornet",
+            price: "$200",
+        },
+        {
+            img_path: require("../img/img3.png"),
+            name: "F/A-18E Hornet",
+            price: "$200",
+        }
+    ];
+
     return (
         <div>
             <SlideShow/>
             <TitleText>Favorite Model</TitleText>
             <MoreButton>더보기</MoreButton>
-            <FavoriteDiv>
+            <ModelBoxDiv>
                 {favoriteModelsDummy.map((model, index) => (
-                    <Favorite
+                    <ModelBox
                         key={index}
                         img_path={model.img_path}
                         model_name={model.name}    
                         model_price={model.price}
                     />
                 ))}
-            </FavoriteDiv>
+            </ModelBoxDiv>
             <TitleText>New Model</TitleText>
             <MoreButton>더보기</MoreButton>
+            <ModelBoxDiv>
+                {newModelsDummy.map((model, index) => (
+                    <ModelBox
+                        key={index}
+                        img_path={model.img_path}
+                        model_name={model.name}    
+                        model_price={model.price}
+                    />
+                ))}
+            </ModelBoxDiv>
         </div>
     );
 }
@@ -71,7 +124,7 @@ const MoreButton = styled.button`
     cursor: pointer;
 `;
 
-const FavoriteDiv = styled.div`
+const ModelBoxDiv = styled.div`
     width: 85%;
     margin-left: 6.8rem;
 `;
