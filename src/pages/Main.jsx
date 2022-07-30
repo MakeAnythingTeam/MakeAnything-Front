@@ -3,80 +3,11 @@
 import React from 'react';
 import styled from 'styled-components';
 import ModelBox from '../components/ModelBox';
-import SlideShow from '../components/SlideShow'
+import SlideShow from '../components/SlideShow';
+import { favoriteModelsDummy } from './DummyData';
+import { newModelsDummy } from './DummyData';
 
 export default function Main() {
-
-    const favoriteModelsDummy = [
-        {
-            img_path: require("../img/img1.png"),
-            name: "F/A-18E Super Hornet",
-            price: "$2000",
-        },
-        {
-            img_path: require("../img/img2.png"),
-            name: "F/A-18E Super Hornet",
-            price: "$2000",
-        },
-        {
-            img_path: require("../img/img3.png"),
-            name: "F/A-18E Super Hornet",
-            price: "$2000",
-        },
-        {
-            img_path: require("../img/img3.png"),
-            name: "F/A-18E Super Hornet",
-            price: "$2000",
-        },
-        {
-            img_path: require("../img/img1.png"),
-            name: "F/A-18E Super Hornet",
-            price: "$2000",
-        }
-    ];
-
-    const newModelsDummy = [
-        {
-            img_path: require("../img/img1.png"),
-            name: "F/A-11E Hornet",
-            price: "$200",
-        },
-        {
-            img_path: require("../img/img2.png"),
-            name: "F/A-12E Hornet",
-            price: "$200",
-        },
-        {
-            img_path: require("../img/img3.png"),
-            name: "F/A-13E Hornet",
-            price: "$200",
-        },
-        {
-            img_path: require("../img/img3.png"),
-            name: "F/A-14E Hornet",
-            price: "$200",
-        },
-        {
-            img_path: require("../img/img1.png"),
-            name: "F/A-15E Hornet",
-            price: "$200",
-        },
-        {
-            img_path: require("../img/img1.png"),
-            name: "F/A-16E Hornet",
-            price: "$200",
-        },
-        {
-            img_path: require("../img/img2.png"),
-            name: "F/A-17E Hornet",
-            price: "$200",
-        },
-        {
-            img_path: require("../img/img3.png"),
-            name: "F/A-18E Hornet",
-            price: "$200",
-        }
-    ];
 
     return (
         <div>
@@ -87,6 +18,7 @@ export default function Main() {
                 {favoriteModelsDummy.map((model, index) => (
                     <ModelBox
                         key={index}
+                        model_id={model.id}
                         img_path={model.img_path}
                         model_name={model.name}    
                         model_price={model.price}
@@ -99,6 +31,7 @@ export default function Main() {
                 {newModelsDummy.map((model, index) => (
                     <ModelBox
                         key={index}
+                        model_id={model.id}
                         img_path={model.img_path}
                         model_name={model.name}    
                         model_price={model.price}
