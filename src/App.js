@@ -1,9 +1,10 @@
 import Main from "./pages/Main";
+import Payment from "./pages/Payment";
 
 function App() {
   return (
     <div>
-      <Main/>
+      <Payment/>
     </div>
   );
 }
