@@ -1,9 +1,27 @@
 // 메인 페이지 - 포디
 
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 
 export default function Main() {
+    const [showImages, setShowImages] = useState([]);
+
+    // 이미지 상대경로 저장
+    const handleAddImages = (event) => {
+        const imageLists = event.target.files;
+        let imageUrlLists = [...showImages];
+
+        for (let i = 0; i < imageLists.length; i++) {
+        const currentImageUrl = URL.createObjectURL(imageLists[i]);
+        imageUrlLists.push(currentImageUrl);
+        }
+
+        if (imageUrlLists.length > 8) {
+        imageUrlLists = imageUrlLists.slice(0, 8);
+        }
+
+        setShowImages(imageUrlLists);
+    };
 
     return (
         <GoodsDiv>
@@ -26,11 +44,16 @@ export default function Main() {
                     <input type="text" name="goods-tag" placeholder="#태그 입력 (최대 10개)" />
                     <h2>판매 금액</h2>
                     <input type="text" name="goods-price" placeholder="ex) 2,000원" />
-                    <h2>파일 업로드</h2>
-                    <input type="text" name="goods-image" placeholder="파일을 업로드하세요" />
+                    <label htmlFor="input-file" onChange={handleAddImages}>                   
+                        <h2>파일 업로드</h2>
+                        <input type="file" name="goods-image" placeholder="파일을 업로드하세요" />
+                    </label>
                     <h2>상품 사진 업로드</h2>
-                    img1 img2 img3 img4<br/>
-                    img5 img6 img7 img8<br/>
+                    {showImages.map((image, id) => ( // 저장해둔 이미지들을 순회하면서 화면에 이미지 출력
+                        <div key={id}>
+                            <img src={image} alt={`${image}-${id}`} />
+                        </div>
+                    ))}            
                     <Button>업로드</Button>
                 </GoodsInfoWrap>
         </GoodsDiv>
@@ -88,11 +111,22 @@ const GoodsInfoWrap = styled.div`
         font-size: 0.9rem;
     }
 
+    span {
+        color: #DBDBDB;
+        font-size: 0.5rem;
+    }
+
     input {
-        width: 18rem;
+        width: 20rem;
         height: 2rem;
         border: 1px solid #DBDBDB;
         margin-bottom: 1rem;
+    }
+
+    img {
+        width: 5rem;
+        height: 3rem;
+        border: 1px solid #DBDBDB;
     }
 `
 
