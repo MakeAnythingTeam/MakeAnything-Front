@@ -5,6 +5,27 @@ import styled from 'styled-components';
 
 export default function Main() {
     const [showImages, setShowImages] = useState([]);
+    const [tagItem, setTagItem] = useState('');
+    const [tagList, setTagList] = useState([]);
+
+    const onKeyPress = (e) => {
+        if (e.target.value.length !== 0 && e.key === 'Enter') {
+            submitTagItem();
+        }
+    }
+
+    const submitTagItem = () => {
+        let updatedTagList = [...tagList];
+        updatedTagList.push(tagItem);
+        setTagList(updatedTagList);
+        setTagItem('');
+    }
+
+    const deleteTagItem = (e) => {
+        const deleteTagItem = e.target.parentElement.firstChild.innerText;
+        const filteredTagList = tagList.filter(tagItem => tagItem !== deleteTagItem);
+        setTagList(filteredTagList);
+    }
 
     // 이미지 상대경로 저장
     const handleAddImages = (event) => {
@@ -39,11 +60,28 @@ export default function Main() {
             <GoodsInfoWrap>
                     <h1>상품 업로드</h1>
                     <h2>상품명</h2>
-                    <input type="text" name="goods-name" />
+                    <GoodsInfoInput type="text" name="goods-name" />
                     <h2>태그</h2>
-                    <input type="text" name="goods-tag" placeholder="#태그 입력 (최대 10개)" />
+                    <TagBox>
+                        {tagList.map((tagItem, index) => {
+                            return (
+                                <TagItem key={index}>
+                                    <TagText>{tagItem}</TagText>
+                                    <button onClick={deleteTagItem}>x</button>
+                                </TagItem>
+                            )
+                        })}
+                        <TagInput 
+                            type="text" 
+                            tabIndex={2}
+                            value={tagItem}
+                            onChange={e => setTagItem(e.target.value)}
+                            onKeyPress={onKeyPress}
+                            placeholder="#태그 입력 (최대 10개)"
+                        />
+                    </TagBox>
                     <h2>판매 금액</h2>
-                    <input type="text" name="goods-price" placeholder="ex) 2,000원" />
+                    <GoodsInfoInput type="text" name="goods-price" placeholder="ex) 2,000원" />
                     <label htmlFor="input-file" onChange={handleAddImages}>                   
                         <h2>파일 업로드</h2>
                         <input type="file" name="goods-image" placeholder="파일을 업로드하세요" />
@@ -54,7 +92,7 @@ export default function Main() {
                             <img src={image} alt={`${image}-${id}`} />
                         </div>
                     ))}            
-                    <Button>업로드</Button>
+                    <UploadButton>업로드</UploadButton>
                 </GoodsInfoWrap>
         </GoodsDiv>
     );
@@ -101,6 +139,7 @@ const GoodsDescription = styled.div`
 const GoodsInfoWrap = styled.div`
     border: 3px solid red;
     margin-left: 1.5rem;
+    max-width: 20rem;
 
     h1 {
         font-size: 1.5rem;
@@ -111,18 +150,6 @@ const GoodsInfoWrap = styled.div`
         font-size: 0.9rem;
     }
 
-    span {
-        color: #DBDBDB;
-        font-size: 0.5rem;
-    }
-
-    input {
-        width: 20rem;
-        height: 2rem;
-        border: 1px solid #DBDBDB;
-        margin-bottom: 1rem;
-    }
-
     img {
         width: 5rem;
         height: 3rem;
@@ -130,7 +157,71 @@ const GoodsInfoWrap = styled.div`
     }
 `
 
-const Button = styled.button`
+const GoodsInfoInput = styled.input`
+    width: 20rem;
+    height: 2rem;
+    border: 1px solid #DBDBDB;
+    margin-bottom: 1rem;
+
+    &:focus-within {
+        border-color: #2F3EFF;
+    }
+`
+
+const TagBox = styled.div`
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    border: 1px solid #DBDBDB;
+    min-height: 2rem;
+    padding: 2px;
+
+    &:focus-within {
+        border-color: #2F3EFF;
+    }
+
+    button {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 1rem;
+        height: 1rem;
+        font-weight: 600;
+        border: 1px solid #AAAAAA;
+        background-color: white;
+        color: #AAAAAA;
+        margin-left: 5px;
+        margin-right: 1px;
+        border-radius: 50%;
+        cursor: pointer;
+    }
+`
+
+const TagItem = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: #AAAAAA;
+  border: 1px solid #AAAAAA;
+  margin: 2px 3px;
+  padding: 2px;
+  font-weight: 600;
+  font-size: 0.9rem;
+`
+
+const TagInput = styled.input`
+    display: inline-flex;
+    outline: none;
+    border: none;
+    background: transparent;
+    cursor: text;
+`
+
+const TagText = styled.span`
+
+`
+
+const UploadButton = styled.button`
     width: 10rem;
     height: 2rem;
     border: none;
