@@ -1,12 +1,26 @@
-// 메인 페이지 - 포디
-
+import axios from 'axios';
 import React, { useState } from 'react';
 import styled from 'styled-components';
 
 export default function Main() {
     const [showImages, setShowImages] = useState([]);
+    const [goodsName, setGoodsName] = useState('');
+    const [goodsPrice, setGoodsPrice] = useState();
+    const [goodsDescription, setGoodsDescription] = useState('');
     const [tagItem, setTagItem] = useState('');
     const [tagList, setTagList] = useState([]);
+
+    const onGoodsNameHandler = (e) => {
+        setGoodsName(e.currentTarget.value);
+    }
+
+    const onGoodsPriceHandler = (e) => {
+        setGoodsPrice(e.currentTarget.value);
+    }
+
+    const onGoodsDescriptionHandler = (e) => {
+        setGoodsDescription(e.currentTarget.value);
+    }
 
     const onKeyPress = (e) => {
         if (e.target.value.length !== 0 && e.key === 'Enter') {
@@ -33,34 +47,58 @@ export default function Main() {
         let imageUrlLists = [...showImages];
 
         for (let i = 0; i < imageLists.length; i++) {
-        const currentImageUrl = URL.createObjectURL(imageLists[i]);
-        imageUrlLists.push(currentImageUrl);
+            const currentImageUrl = URL.createObjectURL(imageLists[i]);
+            imageUrlLists.push(currentImageUrl);
         }
 
         if (imageUrlLists.length > 8) {
-        imageUrlLists = imageUrlLists.slice(0, 8);
+            imageUrlLists = imageUrlLists.slice(0, 8);
         }
 
         setShowImages(imageUrlLists);
     };
 
+    const onClickUpload = () => {
+        console.log(goodsName, goodsPrice, goodsDescription);
+        
+        // 상품 업로드 정보 서버로 보낸 후
+        /*
+        axios.post('/model', {
+            model_name: goodsName,
+            price: goodsPrice,
+            content: goodsDescription
+        })
+        */
+
+        // 업로드 후 페이지로 이동
+        alert('상품 등록이 완료되었습니다!');
+    }
+
     return (
         <GoodsDiv>
             <GoodsWrap>
                 <GoodsMainImgWrap>
-                    <img src={require('../img/img1.png')} alt="상품 이미지" />
+                    <img src={require('../img/img1.png')} alt="goods-main" />
                 </GoodsMainImgWrap>
                     <GoodsDescription>
                     <h2>상품 설명</h2>
                     <textarea
+                        id="goods-description"
                         placeholder='상품 설명을 입력하세요.'
+                        value={goodsDescription}
+                        onChange={onGoodsDescriptionHandler}
                     />
                 </GoodsDescription>                             
             </GoodsWrap>
             <GoodsInfoWrap>
                     <h1>상품 업로드</h1>
                     <h2>상품명</h2>
-                    <GoodsInfoInput type="text" name="goods-name" />
+                    <GoodsInfoInput 
+                        id="goods-name"
+                        type="text" 
+                        value={goodsName}
+                        onChange={onGoodsNameHandler}
+                    />
                     <h2>태그</h2>
                     <TagBox>
                         {tagList.map((tagItem, index) => {
@@ -81,7 +119,13 @@ export default function Main() {
                         />
                     </TagBox>
                     <h2>판매 금액</h2>
-                    <GoodsInfoInput type="text" name="goods-price" placeholder="ex) 2,000원" />
+                    <GoodsInfoInput 
+                        id="goods-price"
+                        type="number" 
+                        placeholder="숫자만 입력하세요" 
+                        value={goodsPrice}
+                        onChange={onGoodsPriceHandler}
+                    />
                     <label htmlFor="input-file" onChange={handleAddImages}>                   
                         <h2>파일 업로드</h2>
                         <input type="file" name="goods-image" placeholder="파일을 업로드하세요" />
@@ -92,7 +136,7 @@ export default function Main() {
                             <img src={image} alt={`${image}-${id}`} />
                         </div>
                     ))}            
-                    <UploadButton>업로드</UploadButton>
+                    <UploadButton onClick={onClickUpload}>업로드</UploadButton>
                 </GoodsInfoWrap>
         </GoodsDiv>
     );
@@ -104,14 +148,14 @@ const GoodsDiv = styled.div`
 `;
 
 const GoodsWrap = styled.div`
-    border: 3px solid green;
+    /* border: 3px solid green; */
     display: flex;
     flex-direction: column;
     justify-content: center;
 `
 
 const GoodsMainImgWrap = styled.div`
-    border: 3px solid black;
+    /* border: 3px solid black; */
     
     img {
         width: 60rem;
@@ -121,7 +165,7 @@ const GoodsMainImgWrap = styled.div`
 
 const GoodsDescription = styled.div`
     width: 60rem;
-    border: 3px solid blue;
+    /* border: 3px solid blue; */
 
     h2 {
         font-size: 0.9rem;
@@ -137,7 +181,7 @@ const GoodsDescription = styled.div`
 `;
 
 const GoodsInfoWrap = styled.div`
-    border: 3px solid red;
+    /* border: 3px solid red; */
     margin-left: 1.5rem;
     max-width: 20rem;
 
@@ -158,13 +202,18 @@ const GoodsInfoWrap = styled.div`
 `
 
 const GoodsInfoInput = styled.input`
-    width: 20rem;
+    width: 19.5rem;
     height: 2rem;
     border: 1px solid #DBDBDB;
     margin-bottom: 1rem;
 
     &:focus-within {
         border-color: #2F3EFF;
+    }
+
+    ::-webkit-outer-spin-button,
+    ::-webkit-inner-spin-button {
+        -webkit-appearance: none;
     }
 `
 
@@ -175,6 +224,7 @@ const TagBox = styled.div`
     border: 1px solid #DBDBDB;
     min-height: 2rem;
     padding: 2px;
+    margin-bottom: 1rem;
 
     &:focus-within {
         border-color: #2F3EFF;
