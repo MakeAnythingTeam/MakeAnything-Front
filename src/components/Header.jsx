@@ -1,9 +1,18 @@
 // 헤더 컴포넌트 - 클레어
-import React from "react";
+import axios from "axios";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import styles from "./Header.module.css";
 
 function Header() {
+  const [search, setSearch] = useState("");
+
+  const handleSearch = async (e) => {
+    e.preventDefault();
+    setSearch(e.target.value);
+    const response = await axios.get("https://virtserver.swaggerhub.com/Torres-09/MakeAnything/1.0.0/models");
+    console.log(response.data);
+  };
   return (
     <div className={styles.header}>
       <ul className={styles.menu_one}>
@@ -23,8 +32,13 @@ function Header() {
         </li>
       </ul>
       <div className={styles.input}>
-        <input  type="search" placeholder="Search.." />
-        <button className={styles.searchBtn} type="submit">
+        <input type="search" placeholder="Search.." />
+        <button
+          className={styles.searchBtn}
+          type="submit"
+          onClick={handleSearch}
+          value={search}
+        >
           <img
             className={styles.buttonImg}
             src="/images/search.png"
