@@ -9,6 +9,7 @@ export default function Main() {
     const [goodsDescription, setGoodsDescription] = useState('');
     const [tagItem, setTagItem] = useState('');
     const [tagList, setTagList] = useState([]);
+    const [fileList, setFileList] = useState('');
 
     const onGoodsNameHandler = (e) => {
         setGoodsName(e.currentTarget.value);
@@ -42,8 +43,8 @@ export default function Main() {
     }
 
     // 이미지 상대경로 저장
-    const handleAddImages = (event) => {
-        const imageLists = event.target.files;
+    const handleAddImages = (e) => {
+        const imageLists = e.target.files;
         let imageUrlLists = [...showImages];
 
         for (let i = 0; i < imageLists.length; i++) {
@@ -73,6 +74,22 @@ export default function Main() {
         // 업로드 후 페이지로 이동
         alert('상품 등록이 완료되었습니다!');
     }
+
+    // 업로드 파일명 
+    const handleFiles = () => {
+        const fileInput = document.getElementById("goods-file");
+        let tempfileList = fileList;
+
+        for(let i = 0; i < fileInput.files.length; i++){
+            tempfileList += fileInput.files[i].name + '<br>';
+        }
+        setFileList(tempfileList);
+
+        // span 추가
+        const filename = document.getElementById("file-names");
+        filename.innerHTML = fileList;
+    };
+  
 
     return (
         <GoodsDiv>
@@ -128,8 +145,14 @@ export default function Main() {
                     />
                     <label htmlFor="input-file" onChange={handleAddImages}>                   
                         <h2>파일 업로드</h2>
-                        <input type="file" name="goods-image" placeholder="파일을 업로드하세요" />
+                        <input 
+                            type="file" 
+                            id="goods-file" 
+                            placeholder="파일을 업로드하세요" 
+                            onChange={handleFiles}
+                        />
                     </label>
+                    <span id="file-names"></span>
                     <h2>상품 사진 업로드</h2>
                     {showImages.map((image, id) => ( // 저장해둔 이미지들을 순회하면서 화면에 이미지 출력
                         <div key={id}>
@@ -192,6 +215,7 @@ const GoodsInfoWrap = styled.div`
 
     h2 {
         font-size: 0.9rem;
+        margin-top: 1.5rem;
     }
 
     img {
@@ -199,13 +223,23 @@ const GoodsInfoWrap = styled.div`
         height: 3rem;
         border: 1px solid #DBDBDB;
     }
+
+    label > #goods-file {
+        margin-bottom: 0.3rem;
+    }
+
+    #file-names {
+        color: #AAAAAA;
+        font-size: 0.9rem;
+        font-weight: 500;
+        border-bottom: 1px solid #DBDBDB;
+    }
 `
 
 const GoodsInfoInput = styled.input`
     width: 19.5rem;
     height: 2rem;
     border: 1px solid #DBDBDB;
-    margin-bottom: 1rem;
 
     &:focus-within {
         border-color: #2F3EFF;
@@ -283,4 +317,3 @@ const UploadButton = styled.button`
     color: white;
     cursor: pointer;
 `
-
