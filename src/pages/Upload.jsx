@@ -155,9 +155,9 @@ export default function Main() {
                     <span id="file-names"></span>
                     <h2>상품 사진 업로드</h2>
                     {showImages.map((image, id) => ( // 저장해둔 이미지들을 순회하면서 화면에 이미지 출력
-                        <div key={id}>
+                        <span id="imgSpan" key={id}>
                             <img src={image} alt={`${image}-${id}`} />
-                        </div>
+                        </span>
                     ))}            
                     <UploadButton onClick={onClickUpload}>업로드</UploadButton>
                 </GoodsInfoWrap>
@@ -206,7 +206,7 @@ const GoodsDescription = styled.div`
 const GoodsInfoWrap = styled.div`
     /* border: 3px solid red; */
     margin-left: 1.5rem;
-    max-width: 20rem;
+    max-width: 22rem;
 
     h1 {
         font-size: 1.5rem;
@@ -228,6 +228,10 @@ const GoodsInfoWrap = styled.div`
         margin-bottom: 0.3rem;
     }
 
+    #imgSpan {
+        margin-right: 0.3rem;
+    }
+
     #file-names {
         color: #AAAAAA;
         font-size: 0.9rem;
@@ -237,7 +241,7 @@ const GoodsInfoWrap = styled.div`
 `
 
 const GoodsInfoInput = styled.input`
-    width: 19.5rem;
+    width: 21.5rem;
     height: 2rem;
     border: 1px solid #DBDBDB;
 
@@ -302,11 +306,10 @@ const TagInput = styled.input`
 `
 
 const TagText = styled.span`
-
 `
 
 const UploadButton = styled.button`
-    width: 10rem;
+    width: 21.5rem;
     height: 2rem;
     border: none;
     margin: 1rem 0;
