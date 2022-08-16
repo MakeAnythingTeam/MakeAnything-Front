@@ -1,6 +1,7 @@
 import axios from 'axios';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
+import { ReactComponent as PlusIcon } from "../assets/plus.svg";
 
 export default function Main() {
     const [showImages, setShowImages] = useState([]);
@@ -9,7 +10,7 @@ export default function Main() {
     const [goodsDescription, setGoodsDescription] = useState('');
     const [tagItem, setTagItem] = useState('');
     const [tagList, setTagList] = useState([]);
-    const [fileList, setFileList] = useState('');
+    const [fileName, setFileName] = useState('');
 
     const onGoodsNameHandler = (e) => {
         setGoodsName(e.currentTarget.value);
@@ -59,6 +60,19 @@ export default function Main() {
         setShowImages(imageUrlLists);
     };
 
+    // 업로드 파일명 출력
+    const handleFiles = () => {
+        const fileInput = document.getElementById("goods-file");
+        let tempfileName =  fileInput.files[0].name;
+        setFileName(tempfileName);
+    };
+
+    useEffect(() => {
+        // spna 추가
+        const fileNameSpan = document.getElementById("file-name");
+        fileNameSpan.innerHTML = fileName;
+    }, [fileName]);
+
     const onClickUpload = () => {
         console.log(goodsName, goodsPrice, goodsDescription);
         
@@ -74,21 +88,6 @@ export default function Main() {
         // 업로드 후 페이지로 이동
         alert('상품 등록이 완료되었습니다!');
     }
-
-    // 업로드 파일명 
-    const handleFiles = () => {
-        const fileInput = document.getElementById("goods-file");
-        let tempfileList = fileList;
-
-        for(let i = 0; i < fileInput.files.length; i++){
-            tempfileList += fileInput.files[i].name + '<br>';
-        }
-        setFileList(tempfileList);
-
-        // span 추가
-        const filename = document.getElementById("file-names");
-        filename.innerHTML = fileList;
-    };
   
 
     return (
@@ -143,22 +142,30 @@ export default function Main() {
                         value={goodsPrice}
                         onChange={onGoodsPriceHandler}
                     />
-                    <label htmlFor="input-file" onChange={handleAddImages}>                   
-                        <h2>파일 업로드</h2>
+                    <h2>파일 업로드</h2>
+                    <label htmlFor="goods-file">
+                        <PlusIcon/>
                         <input 
-                            type="file" 
-                            id="goods-file" 
-                            placeholder="파일을 업로드하세요" 
-                            onChange={handleFiles}
+                                type="file" 
+                                id="goods-file" 
+                                onChange={handleFiles}
                         />
                     </label>
-                    <span id="file-names"></span>
+                    <span id="file-name"/><hr id="file-hr" />
                     <h2>상품 사진 업로드</h2>
+                    <label htmlFor="goods-images" onChange={handleAddImages}>                   
+                        <PlusIcon/>       
+                        <input 
+                            type="file" 
+                            id="goods-images" 
+                        />  
+                    </label>
+                    
                     {showImages.map((image, id) => ( // 저장해둔 이미지들을 순회하면서 화면에 이미지 출력
                         <span id="imgSpan" key={id}>
                             <img src={image} alt={`${image}-${id}`} />
                         </span>
-                    ))}            
+                    ))}    
                     <UploadButton onClick={onClickUpload}>업로드</UploadButton>
                 </GoodsInfoWrap>
         </GoodsDiv>
@@ -220,23 +227,36 @@ const GoodsInfoWrap = styled.div`
 
     img {
         width: 5rem;
-        height: 3rem;
+        height: 2.7rem;
         border: 1px solid #DBDBDB;
     }
 
+    label {
+        display: block;
+        cursor: pointer;
+    }
+
     label > #goods-file {
+        display: none;
+    }
+    
+    label > #goods-images {
         margin-bottom: 0.3rem;
+        display: none;
+    }
+
+    #file-hr {
+        border: 0.5px solid #DBDBDB;
+        margin: 0;
+    }
+
+    #file-name {
+        color: #AAAAAA;
+        font-weight: 600;
     }
 
     #imgSpan {
         margin-right: 0.3rem;
-    }
-
-    #file-names {
-        color: #AAAAAA;
-        font-size: 0.9rem;
-        font-weight: 500;
-        border-bottom: 1px solid #DBDBDB;
     }
 `
 
