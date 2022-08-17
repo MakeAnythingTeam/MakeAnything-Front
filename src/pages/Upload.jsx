@@ -134,6 +134,13 @@ export default function Main() {
                             placeholder="#태그 입력 (최대 10개)"
                         />
                     </TagBox>
+                    <h2>카테고리</h2>
+                    <select id="goods-category">
+                        <option value="전체">전체</option>
+                        <option value="건축물">건축물</option>
+                        <option value="로봇">로봇</option>
+                        <option value="기타">기타</option>
+                    </select>
                     <h2>판매 금액</h2>
                     <GoodsInfoInput 
                         id="goods-price"
@@ -243,6 +250,15 @@ const GoodsInfoWrap = styled.div`
     label > #goods-images {
         margin-bottom: 0.3rem;
         display: none;
+    }
+
+    #goods-category {
+        border: 1px solid #DBDBDB;
+        width: 22rem;
+        height: 2rem;
+        font-size: 1rem;
+        font-weight: normal;
+        color: #AAAAAA;
     }
 
     #file-hr {
