@@ -44,7 +44,7 @@ export default function Payment() {
     
         if(success) {
             axios({
-                url: "https://3.39.161.226:8080/",
+                url: "",
                 method: "post",
                 data: {
                     imp_uid: imp_uid,
