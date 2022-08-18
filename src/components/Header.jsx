@@ -1,17 +1,28 @@
 // 헤더 컴포넌트 - 클레어
 import axios from "axios";
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 import styles from "./Header.module.css";
 
 function Header() {
   const [search, setSearch] = useState("");
+  const navigate = useNavigate();
 
-  const handleSearch = async (e) => {
-    e.preventDefault();
+  const activeStyle = {
+    color: "#2f3eff",
+  };
+
+  const onKeyPress = (e) => {
+    if (e.key === "Enter") {
+      handleSearch();
+    }
+  };
+  const handleInput = (e) => {
     setSearch(e.target.value);
-    const response = await axios.get("https://virtserver.swaggerhub.com/Torres-09/MakeAnything/1.0.0/models");
-    console.log(response.data);
+  };
+  const handleSearch = () => {
+    navigate("/search", { state: search });
+    setSearch("");
   };
   return (
     <div className={styles.header}>
@@ -22,22 +33,42 @@ function Header() {
           </Link>
         </li>
         <li>
-          <Link to="/category">카테고리</Link>
+          <NavLink
+            to="/category/All"
+            style={({ isActive }) => (isActive ? activeStyle : undefined)}
+          >
+            카테고리
+          </NavLink>
         </li>
         <li>
-          <Link to="/qna">QnA</Link>
+          <NavLink
+            to="/qna"
+            style={({ isActive }) => (isActive ? activeStyle : undefined)}
+          >
+            QnA
+          </NavLink>
         </li>
         <li>
-          <Link to="/community">커뮤니티</Link>
+          <NavLink
+            to="/community"
+            style={({ isActive }) => (isActive ? activeStyle : undefined)}
+          >
+            커뮤니티
+          </NavLink>
         </li>
       </ul>
       <div className={styles.input}>
-        <input type="search" placeholder="Search.." />
+        <input
+          type="search"
+          placeholder="Search.."
+          value={search}
+          onChange={handleInput}
+          onKeyPress={onKeyPress}
+        />
         <button
           className={styles.searchBtn}
           type="submit"
           onClick={handleSearch}
-          value={search}
         >
           <img
             className={styles.buttonImg}
@@ -49,10 +80,20 @@ function Header() {
 
       <ul className={styles.menu_two}>
         <li>
-          <Link to="/login">로그인</Link>
+          <NavLink
+            to="/login"
+            style={({ isActive }) => (isActive ? activeStyle : undefined)}
+          >
+            로그인
+          </NavLink>
         </li>
         <li>
-          <Link to="/mypage">마이페이지</Link>
+          <NavLink
+            to="/mypage"
+            style={({ isActive }) => (isActive ? activeStyle : undefined)}
+          >
+            마이페이지
+          </NavLink>
         </li>
       </ul>
     </div>

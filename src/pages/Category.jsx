@@ -1,6 +1,7 @@
-import React, { Component, useState } from "react";
+import React, { Component, useState, useRef } from "react";
 import styles from "./Category.module.css";
 import ItemList from "../components/ItemList";
+import App2 from "./App2.css";
 import {
   categoryAllDummy,
   categoryHomeDummy,
@@ -8,25 +9,35 @@ import {
   categoryArchitectureDummy,
 } from "./DummyData";
 import ItemBox from "../components/ItemBox";
+import { Link, Outlet, NavLink } from "react-router-dom";
+import CategoryItem from "../components/CategoryItem";
 
 const Category = () => {
-  const [data, setData] = useState([categoryAllDummy]);
+  const [data, setData] = useState(categoryAllDummy);
+  const [select, setSelect] = useState("All");
+  console.log(data);
 
-  
   const selectCategory = (e) => {
     const name = e.target.innerText;
+    console.log(e.target.classList);
     if (name === "All") {
       setData(categoryAllDummy);
+      setSelect("All");
     } else if (name === "Home") {
       setData(categoryHomeDummy);
+      setSelect("Home");
     } else if (name === "Robot") {
       setData(categoryRobotDummy);
+      setSelect("Robot");
     } else if (name === "Architecture") {
       setData(categoryArchitectureDummy);
+      setSelect("Architecture");
     }
   };
 
-  // ref 를 이용해서 클릭한 li에 active 클래스를 추가
+  const activeStyle = {
+    color: "#2f3eff",
+  };
 
   return (
     <>
@@ -37,17 +48,42 @@ const Category = () => {
           <p className={styles.line}></p>
           <ul>
             <li className={styles.active} onClick={selectCategory}>
-              All
+              <NavLink
+                to="/category/All"
+                style={({ isActive }) => (isActive ? activeStyle : undefined)}
+              >
+                All
+              </NavLink>
             </li>
             <li onClick={selectCategory} name="Home">
-              Home
+              <NavLink
+                to="/category/Home"
+                style={({ isActive }) => (isActive ? activeStyle : undefined)}
+              >
+                Home
+              </NavLink>
             </li>
-            <li onClick={selectCategory}>Robot</li>
-            <li onClick={selectCategory}>Architecture</li>
+            <li onClick={selectCategory}>
+              <NavLink
+                to="/category/Robot"
+                style={({ isActive }) => (isActive ? activeStyle : undefined)}
+              >
+                Robot
+              </NavLink>
+            </li>
+            <li onClick={selectCategory}>
+              <NavLink
+                to="/category/Architecture"
+                style={({ isActive }) => (isActive ? activeStyle : undefined)}
+              >
+                Architecture
+              </NavLink>
+            </li>
           </ul>
         </div>
         <div className={styles.item}>
-          <p className={styles.title}>All</p>
+          {/* <Outlet items={data} select={select} /> */}
+          <p className={styles.title}>{select}</p>
           <p className={styles.line}></p>
           <div className={styles.item_container}>
             <ItemList items={data} />

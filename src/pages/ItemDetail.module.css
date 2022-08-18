@@ -1,0 +1,100 @@
+.container {
+  display: flex;
+  padding-top: 50px;
+  padding-right: 100px;
+  padding-left: 100px;
+}
+
+/* left */
+
+.itemImg {
+  /* background-color: aqua; */
+  flex-grow: 2;
+}
+
+.itemImg img {
+  background-color: gainsboro;
+  width: 90%;
+  height: 400px;
+}
+
+.slide ul {
+  margin: 0;
+  padding: 0;
+  display: flex;
+
+  justify-content: space-evenly;
+}
+.smallImg {
+  background-color: gainsboro;
+  height: 60px;
+  width: 120px;
+}
+
+/* right */
+.slide {
+  margin-top: 20px;
+  width: 90%;
+  height: 100px;
+  /* background-color: aquamarine; */
+}
+
+.itemContent {
+  background-color: blueviolet;
+  flex-grow: 1.3;
+}
+
+.title {
+    margin:0;
+    font-size: 20px;
+}
+.owner {
+    margin-top:0;
+    font-size: 18px;
+    color: #AAAAAA;
+    font-weight: 500;
+}
+.fileInfo {
+    display: flex;
+    justify-content: space-between;
+    font-size: 12px;
+}
+.fileInfo p{
+    margin: 0;
+}
+
+.tag {
+    margin-top: 7px;
+    margin-bottom: 0;
+    font-size: 15px;
+}
+.tagContainer {
+    display: flex;
+}
+.tagName {
+    margin-top: 7px;
+    font-size: 12px;
+    color: #AAAAAA;
+    font-weight: 500;
+    border: 2px solid #AAAAAA;
+    margin-right: 5px;
+}
+
+.line {
+    height: 1px;
+    background-color: #dbdbdb;
+    margin: 7px 0;
+  }
+  
+  .price{
+    display: flex;
+    font-size: 13px;
+  }
+
+  .price p{
+    margin-top: 7px;
+  }
+  .priceTitle{
+    margin-right: 20px;
+  }
+  

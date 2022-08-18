@@ -1,13 +1,16 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import styles from "./ItemBox.module.css";
-import ItemList from "./ItemList";
 const ItemBox = ({ item }) => {
+  // const goToDetail = ()=>{
+  //   history.push("/detail:")
+  // }
   return (
-    <div className={styles.item}>
+    <Link className={styles.item} to={"/detail/" + item.id}>
       <img className={styles.image} src={item.img_path}></img>
       <p className={styles.title}>{item.name}</p>
       <p className={styles.price}>{item.price}</p>
-    </div>
+    </Link>
   );
 };
 

@@ -6,6 +6,9 @@ import QnA from "./pages/QnA";
 import Community from "./pages/Community";
 import Login from "./pages/Login";
 import MyPage from "./pages/MyPage";
+import ItemDetail from "./pages/ItemDetail";
+import Search from "./pages/Search";
+import CategoryItem from './components/CategoryItem';
 
 function App() {
   return (
@@ -13,11 +16,16 @@ function App() {
       <Header />
       <Routes>
         <Route path="/" element={<Main />} />
-        <Route path="/category" element={<Category />} />
+        <Route path="/category" element={<Category />}>
+          <Route path=":type" element={<Category />} />
+        </Route>
+
         <Route path="/qna" element={<QnA />} />
         <Route path="/community" element={<Community />} />
         <Route path="/login" element={<Login />} />
         <Route path="/mypage" element={<MyPage />} />
+        <Route path="/detail/:id" element={<ItemDetail />} />
+        <Route path="/search" element={<Search />} />
       </Routes>
     </>
   );

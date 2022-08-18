@@ -1,0 +1,31 @@
+.banner {
+  background-color: gainsboro;
+  height: 230px;
+}
+
+.search {
+  margin: 40px 30px 0;
+}
+
+.search h1 {
+  font-size: 20px;
+}
+.title {
+  color: #2f3eff;
+}
+.line {
+  height: 1px;
+  background-color: #dbdbdb;
+  margin: 7px 0;
+}
+.container {
+  display: flex;
+}
+
+.child {
+
+  background-color: gainsboro;
+  height: 300px;
+  width: 300px;
+  margin: 20px;
+}
