@@ -44,7 +44,12 @@ const ItemDetail = () => {
         </div>
         <div className={styles.buy}>
           <button className={styles.buyBtn}>BUY</button>
-          <img></img>
+          <div className={styles.img}></div>
+          <div className={styles.img}></div>
+        </div>
+        <p>information</p>
+        <div>
+          I designed the F-117 stealth aircraft a foldable way..
         </div>
 
       </div>

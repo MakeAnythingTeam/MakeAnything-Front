@@ -35,7 +35,7 @@ function Header() {
         <li>
           <NavLink
             to="/category/All"
-            style={({ isActive }) => (isActive ? activeStyle : undefined)}
+            style={({ isActive }) => (isActive ? activeStyle : {color:'black'})}
           >
             카테고리
           </NavLink>
@@ -43,7 +43,7 @@ function Header() {
         <li>
           <NavLink
             to="/qna"
-            style={({ isActive }) => (isActive ? activeStyle : undefined)}
+            style={({ isActive }) => (isActive ? activeStyle : {color:'black'})}
           >
             QnA
           </NavLink>
@@ -51,7 +51,7 @@ function Header() {
         <li>
           <NavLink
             to="/community"
-            style={({ isActive }) => (isActive ? activeStyle : undefined)}
+            style={({ isActive }) => (isActive ? activeStyle : {color:'black'})}
           >
             커뮤니티
           </NavLink>
@@ -82,7 +82,7 @@ function Header() {
         <li>
           <NavLink
             to="/login"
-            style={({ isActive }) => (isActive ? activeStyle : undefined)}
+            style={({ isActive }) => (isActive ? activeStyle : {color:'black'})}
           >
             로그인
           </NavLink>
@@ -90,7 +90,7 @@ function Header() {
         <li>
           <NavLink
             to="/mypage"
-            style={({ isActive }) => (isActive ? activeStyle : undefined)}
+            style={({ isActive }) => (isActive ? activeStyle : {color:'black'})}
           >
             마이페이지
           </NavLink>

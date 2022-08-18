@@ -23,9 +23,9 @@ const Category = () => {
     if (name === "All") {
       setData(categoryAllDummy);
       setSelect("All");
-    } else if (name === "Home") {
+    } else if (name === "ETC") {
       setData(categoryHomeDummy);
-      setSelect("Home");
+      setSelect("ETC");
     } else if (name === "Robot") {
       setData(categoryRobotDummy);
       setSelect("Robot");
@@ -57,10 +57,10 @@ const Category = () => {
             </li>
             <li onClick={selectCategory} name="Home">
               <NavLink
-                to="/category/Home"
+                to="/category/ETC"
                 style={({ isActive }) => (isActive ? activeStyle : undefined)}
               >
-                Home
+                ETC
               </NavLink>
             </li>
             <li onClick={selectCategory}>
