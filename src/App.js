@@ -9,6 +9,8 @@ import MyPage from "./pages/MyPage";
 import ItemDetail from "./pages/ItemDetail";
 import Search from "./pages/Search";
 import CategoryItem from './components/CategoryItem';
+import Payment from "./pages/Payment";
+import Upload from "./pages/Upload";
 
 function App() {
   return (
@@ -26,6 +28,8 @@ function App() {
         <Route path="/mypage" element={<MyPage />} />
         <Route path="/detail/:id" element={<ItemDetail />} />
         <Route path="/search" element={<Search />} />
+        <Route path="/payment" element={<Payment />} />
+        <Route path="/upload" element={<Upload />} />
       </Routes>
     </>
   );
