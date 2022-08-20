@@ -39,7 +39,6 @@ const settings = {
 };
 
 const Container = styled.div`
-    margin-top: 72px;
     text-align: center;
 
     .slick-slider{

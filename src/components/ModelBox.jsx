@@ -13,11 +13,11 @@ export default function Favorite({ index, model_id, img_path, model_name, model_
 
     const onClickBookmark = () => {
         /* DATA UPDATE : dummy data -> REST API */
-        axios.get('')
-            .then((Response) => {
-                setFavoriteModelArr(Response.data)
-            })
-            .catch((Error) => {console.log(Error)})
+        // axios.get('')
+        //     .then((Response) => {
+        //         setFavoriteModelArr(Response.data)
+        //     })
+        //     .catch((Error) => {console.log(Error)})
 
         /* dummy data */
         if(!bookmarkIcon) { // 북마크 x -> 클릭 -> 북마크 등록
