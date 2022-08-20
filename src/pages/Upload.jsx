@@ -180,6 +180,7 @@ export default function Main() {
 }
 
 const GoodsDiv = styled.div`
+    margin-top: 1.5rem;
     display: flex;
     justify-content: center;
 `;

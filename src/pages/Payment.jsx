@@ -1,4 +1,4 @@
-// 메인 페이지 - 포디
+// 결제 페이지 - 포디
 
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
@@ -88,6 +88,7 @@ export default function Payment() {
     }
 
     return (
+        <BackgroundDiv>
         <PaymentContainer>
             <PaidGoodsDiv>
                 <img src={require("../img/img1.png")} alt="goods"></img>
@@ -99,10 +100,10 @@ export default function Payment() {
             <PaymentWrap>
                 <AgreementDiv>
                     <h1>저작권법 동의</h1>
-                    <span>이 란은 저작권 법 관련 내용이 들어가는 자리입니다. 아직 저작권법에 대한 자세한 내용이 없어서 공란으로 둡니다.<br/></span>
-                    <span>이 란은 저작권 법 관련 내용이 들어가는 자리입니다. 아직 저작권법에 대한 자세한 내용이 없어서 공란으로 둡니다.<br/></span>
-                    <span>이 란은 저작권 법 관련 내용이 들어가는 자리입니다. 아직 저작권법에 대한 자세한 내용이 없어서 공란으로 둡니다.<br/></span>
-                    <span>이 란은 저작권 법 관련 내용이 들어가는 자리입니다. 아직 저작권법에 대한 자세한 내용이 없어서 공란으로 둡니다.<br/></span>
+                    <span>이 란은 저작권 법 관련 내용이 들어가는 자리입니다. 아직 저작권법에 대한 자세한 내용이 없어서 공란으로 둡니다.<br/><br/></span>
+                    <span>이 란은 저작권 법 관련 내용이 들어가는 자리입니다. 아직 저작권법에 대한 자세한 내용이 없어서 공란으로 둡니다.<br/><br/></span>
+                    <span>이 란은 저작권 법 관련 내용이 들어가는 자리입니다. 아직 저작권법에 대한 자세한 내용이 없어서 공란으로 둡니다.<br/><br/></span>
+                    <span>이 란은 저작권 법 관련 내용이 들어가는 자리입니다. 아직 저작권법에 대한 자세한 내용이 없어서 공란으로 둡니다.<br/><br/></span>
                     <AgreementCheck>
                         <span>동의합니다</span>
                         <input type="checkbox"></input>
@@ -123,20 +124,29 @@ export default function Payment() {
                 </PaymentDiv>
             </PaymentWrap>
         </PaymentContainer>
+        </BackgroundDiv>
     );
 }
 
+const BackgroundDiv = styled.div`
+    border: 1px solid #F8F8FA;
+    width: 100vw;
+    height: 100vh;
+    background-color: #F8F8FA;
+`
+
 const PaymentContainer = styled.div`
-    border: 3px solid yellow;   
+    /* border: 3px solid yellow;    */
     width: 78rem; 
     margin: 0 auto;
     margin-top: 3rem;
 `
 
 const PaidGoodsDiv = styled.div`
-    border: 3px solid black;
+    /* border: 3px solid black; */
     display: flex;
     margin-bottom: 1rem;
+    background-color: #FFFFFF;
 
     img {
         width: 12rem;
@@ -164,14 +174,15 @@ const GoodsInfo = styled.div`
 `
 
 const PaymentWrap = styled.div`
-    border: 3px solid red;
+    /* border: 3px solid red; */
     display: flex;
     justify-content: space-between;
 `
 
 const AgreementDiv = styled.div`
-    border: 3px solid green;
+    /* border: 3px solid green; */
     width: 60rem;
+    background-color: #FFFFFF;
 
     h1 {
         font-size: 1.5rem;
@@ -189,10 +200,11 @@ const AgreementCheck = styled.div`
 `
 
 const PaymentDiv = styled.div`
-    border: 3px solid blue;
+    /* border: 3px solid blue; */
     width: 40rem;
     margin-left: 1.5rem;
-
+    background-color: #FFFFFF;
+    
     h1 {
         font-size: 1.5rem;
     }

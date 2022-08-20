@@ -13,7 +13,7 @@ export default function Main() {
         <div>
             <SlideShow/>
             <TitleText>Favorite Model</TitleText>
-            <MoreButton>더보기</MoreButton>
+            <MoreButton>+ More</MoreButton>
             <ModelBoxDiv>
                 {favoriteModelsDummy.map((model, index) => (
                     <ModelBox
@@ -26,7 +26,7 @@ export default function Main() {
                 ))}
             </ModelBoxDiv>
             <TitleText>New Model</TitleText>
-            <MoreButton>더보기</MoreButton>
+            <MoreButton>+ More</MoreButton>
             <ModelBoxDiv>
                 {newModelsDummy.map((model, index) => (
                     <ModelBox
@@ -45,15 +45,18 @@ export default function Main() {
 const TitleText = styled.div`
     font-weight: 800;
     font-size: 34px;
-    margin-left: 7.8rem;
+    margin-left: 8.5rem;
     margin-top: 2.5rem;
 `;
 
 const MoreButton = styled.button`
+    width: 5rem;
     border: none;
-    margin-left: 78rem;
+    margin-left: 76.5rem;
     background-color: white;
     font-size: 15px;
+    font-weight: 600;
+    color: #2F3EFF;
     cursor: pointer;
 `;
 
