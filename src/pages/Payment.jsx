@@ -1,10 +1,13 @@
 // 메인 페이지 - 포디
 
 import axios from 'axios';
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 
-export default function Payment() {
+export default function Payment() {    
+    const [payMethod, setPayMethod] = useState('');
+    const [checked, setChecked] = useState([false, false, false, false, false]);
+
     useEffect(() => {
         const jquery = document.createElement("script");
         jquery.src = "https://code.jquery.com/jquery-1.12.4.min.js";
@@ -20,6 +23,30 @@ export default function Payment() {
             document.head.removeChild(iamport);
         }
     }, []);
+    
+    const onClickPayMethod = (e) => {
+        const method = e.target.innerText;
+        const temp = checked;
+
+        if (method === "신용카드") {
+            setPayMethod('card');
+            temp[0] = !temp[0];
+        } else if (method === "계좌이체(무통장)") {
+            setPayMethod('account');
+            temp[1] = !temp[1];
+        } else if (method === "네이버페이") {
+            setPayMethod('naver');
+            temp[2] = !temp[2];
+        } else if (method === "카카오페이") {
+            setPayMethod('kakao');
+            temp[3] = !temp[3];
+        } else if (method === "휴대전화") {
+            setPayMethod('phone');
+            temp[4] = !temp[4];
+        }
+        console.log(checked);
+        setChecked(temp);
+    }
 
     const onClickPayment = () => {
         const { IMP } = window;
@@ -36,9 +63,10 @@ export default function Payment() {
             buyer_tel: "01012345678", // 구매자 전화번호
         }
         IMP.request_pay(data, callback);
-    }
 
-    console.log(`ORD${new Date().getTime()}`);
+        // 결제 방법 -> 나중에 추가
+        console.log(payMethod);
+    }
 
     const callback = (response) => {
         const {success, error_msg, imp_uid, merchant_uid} = response;
@@ -86,11 +114,11 @@ export default function Payment() {
                         <span>2000원</span>
                     </Price>
                     <h1>결제 방식</h1>
-                    <PayMethodButton>신용카드</PayMethodButton>
-                    <PayMethodButton>계좌이체(무통장)</PayMethodButton>
-                    <PayMethodButton>네이버페이</PayMethodButton>
-                    <PayMethodButton>카카오페이</PayMethodButton>
-                    <PayMethodButton>휴대전화</PayMethodButton>
+                    <MethodButton checked={checked[0]} onClick={onClickPayMethod}>신용카드</MethodButton>
+                    <MethodButton checked={checked[1]} onClick={onClickPayMethod}>계좌이체(무통장)</MethodButton>
+                    <MethodButton checked={checked[2]} onClick={onClickPayMethod}>네이버페이</MethodButton>
+                    <MethodButton checked={checked[3]} onClick={onClickPayMethod}>카카오페이</MethodButton>
+                    <MethodButton checked={checked[4]} onClick={onClickPayMethod}>휴대전화</MethodButton>                 
                     <PayButton onClick={onClickPayment}>결제하기</PayButton>
                 </PaymentDiv>
             </PaymentWrap>
@@ -100,9 +128,9 @@ export default function Payment() {
 
 const PaymentContainer = styled.div`
     border: 3px solid yellow;   
-    width: 80rem; 
+    width: 78rem; 
     margin: 0 auto;
-
+    margin-top: 3rem;
 `
 
 const PaidGoodsDiv = styled.div`
@@ -111,20 +139,27 @@ const PaidGoodsDiv = styled.div`
     margin-bottom: 1rem;
 
     img {
-        width: 10rem;
-        height: 10rem;
+        width: 12rem;
+        height: 12rem;
+        margin: 3.5rem;
     }
 `
 
 const GoodsInfo = styled.div`
-    display: block;
-    
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
     h1 {
         font-size: 1.5rem;
+        margin: 0;
     }
 
     h2 {
-        font-size: 1rem;
+        font-size: 1.5rem;
+        font-weight: 400;
+        color: #AAAAAA;
+        margin: 0;
     }
 `
 
@@ -174,11 +209,11 @@ const Price = styled.div`
     }
 `
 
-const PayMethodButton = styled.button`
-    border: 1px solid #707070;
-    width: 7.5rem;
+const MethodButton = styled.button`
+    width: 8rem;
     height: 2rem;
     margin: 0.5rem 0.2rem;
+    border: solid ${props => (props.checked ? '1.6px #2F3EFF' : '1px #707070')};
 `
 
 const PayButton = styled.button`
