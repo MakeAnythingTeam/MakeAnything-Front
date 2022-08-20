@@ -4,15 +4,16 @@ import axios from "axios";
 import { ReactComponent as CheckedIcon} from "../assets/bookmarkChecked.svg";
 import { ReactComponent as UncheckedIcon} from "../assets/bookmarkUnchecked.svg";
 import { favoriteModelsDummy } from "../pages/DummyData"; 
+import { useNavigate } from "react-router-dom";
 
 export default function Favorite({ index, model_id, img_path, model_name, model_price }) {
-
+    const navigate = useNavigate();
     const [bookmarkIcon, setbookmarkIcon] = useState(false);
     const [favoriteModelArr, setFavoriteModelArr] = useState([...favoriteModelsDummy]);
 
     const onClickBookmark = () => {
         /* DATA UPDATE : dummy data -> REST API */
-        axios.get('http://localhost:3000/users/{userId}/wish')
+        axios.get('')
             .then((Response) => {
                 setFavoriteModelArr(Response.data)
             })
@@ -41,6 +42,14 @@ export default function Favorite({ index, model_id, img_path, model_name, model_
         setbookmarkIcon(!bookmarkIcon);
     }
 
+    const onClickModelBox = () => {
+        console.log({model_id}, {model_name}, {model_price});
+
+        navigate(`detail/${model_id}`, {
+            state: model_id
+        });
+    }
+
     return (
         <ModelBoxContainer key={index} model_id={model_id}>
             <BookmarkWrap>
@@ -48,7 +57,7 @@ export default function Favorite({ index, model_id, img_path, model_name, model_
             {bookmarkIcon === true ?  <CheckedIcon/> : <UncheckedIcon/>}
             </BookmarkWrap>
             <ModelWrap>
-                <button onClick={() => console.log(`${model_name} 상세페이지`)}></button>
+                <button onClick={onClickModelBox} />
                 <ModelImage src={img_path} alt="북마크" />
                 <ModelName>{model_name}</ModelName>
                 <ModelPrice>{model_price}</ModelPrice>
