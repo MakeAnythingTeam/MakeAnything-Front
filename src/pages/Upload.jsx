@@ -89,12 +89,13 @@ export default function Main() {
         alert('상품 등록이 완료되었습니다!');
     }
   
-
     return (
         <GoodsDiv>
             <GoodsWrap>
                 <GoodsMainImgWrap>
-                    <img src={require('../img/img1.png')} alt="goods-main" />
+                    {showImages[0] === undefined ? 
+                        <div/> : <img src={showImages[0]} alt="goods-main" />
+                    }
                 </GoodsMainImgWrap>
                     <GoodsDescription>
                     <h2>상품 설명</h2>
@@ -194,10 +195,18 @@ const GoodsWrap = styled.div`
 
 const GoodsMainImgWrap = styled.div`
     /* border: 3px solid black; */
-    
-    img {
+    div {
+        border: 1px solid #DBDBDB;
+        background-color: #DBDBDB;
         width: 60rem;
         height: 30rem;
+    }
+
+    img {
+        border: 1px solid #DBDBDB;
+        width: 60rem;
+        height: 30rem;
+        overflow: hidden;
     }
 `
 
