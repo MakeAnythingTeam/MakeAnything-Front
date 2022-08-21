@@ -2,9 +2,13 @@
 
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
+import { useLocation } from 'react-router-dom';
 import styled from 'styled-components';
 
 export default function Payment() {    
+    // 상세 페이지에서 넘어온 상품 정보 props
+    const { state } = useLocation();
+    
     const [payMethod, setPayMethod] = useState('');
     const [checked, setChecked] = useState([false, false, false, false, false]);
 
@@ -73,7 +77,7 @@ export default function Payment() {
     
         if(success) {
             axios({
-                url: "",
+                url: `http://3.39.161.226:8080/orders/${state}`,
                 method: "post",
                 data: {
                     imp_uid: imp_uid,
@@ -93,19 +97,19 @@ export default function Payment() {
             <PaidGoodsDiv>
                 <img src={require("../img/img1.png")} alt="goods"></img>
                 <GoodsInfo>
-                    <h1>상품 이름</h1>
-                    <h2>판매자 이름</h2>
+                    <h1>F/A-18E Super Hornet</h1>
+                    <h2>Seojune Lee</h2>
                 </GoodsInfo>
             </PaidGoodsDiv>
             <PaymentWrap>
                 <AgreementDiv>
                     <h1>저작권법 동의</h1>
-                    <span>이 란은 저작권 법 관련 내용이 들어가는 자리입니다. 아직 저작권법에 대한 자세한 내용이 없어서 공란으로 둡니다.<br/><br/></span>
-                    <span>이 란은 저작권 법 관련 내용이 들어가는 자리입니다. 아직 저작권법에 대한 자세한 내용이 없어서 공란으로 둡니다.<br/><br/></span>
-                    <span>이 란은 저작권 법 관련 내용이 들어가는 자리입니다. 아직 저작권법에 대한 자세한 내용이 없어서 공란으로 둡니다.<br/><br/></span>
-                    <span>이 란은 저작권 법 관련 내용이 들어가는 자리입니다. 아직 저작권법에 대한 자세한 내용이 없어서 공란으로 둡니다.<br/><br/></span>
+                    <span>저작권 법 관련 내용이 들어가는 자리입니다. 아직 저작권법에 대한 자세한 내용이 없어서 공란으로 둡니다.<br/><br/></span>
+                    <span>저작권 법 관련 내용이 들어가는 자리입니다. 아직 저작권법에 대한 자세한 내용이 없어서 공란으로 둡니다.<br/><br/></span>
+                    <span>저작권 법 관련 내용이 들어가는 자리입니다. 아직 저작권법에 대한 자세한 내용이 없어서 공란으로 둡니다.<br/><br/></span>
+                    <span>저작권 법 관련 내용이 들어가는 자리입니다. 아직 저작권법에 대한 자세한 내용이 없어서 공란으로 둡니다.<br/><br/></span>
                     <AgreementCheck>
-                        <span>동의합니다</span>
+                        <span>동의합니다 </span>
                         <input type="checkbox"></input>
                     </AgreementCheck>
                 </AgreementDiv>
@@ -115,12 +119,14 @@ export default function Payment() {
                         <span>2000원</span>
                     </Price>
                     <h1>결제 방식</h1>
-                    <MethodButton checked={checked[0]} onClick={onClickPayMethod}>신용카드</MethodButton>
-                    <MethodButton checked={checked[1]} onClick={onClickPayMethod}>계좌이체(무통장)</MethodButton>
-                    <MethodButton checked={checked[2]} onClick={onClickPayMethod}>네이버페이</MethodButton>
-                    <MethodButton checked={checked[3]} onClick={onClickPayMethod}>카카오페이</MethodButton>
-                    <MethodButton checked={checked[4]} onClick={onClickPayMethod}>휴대전화</MethodButton>                 
-                    <PayButton onClick={onClickPayment}>결제하기</PayButton>
+                    <ButtonWrap>
+                        <MethodButton checked={checked[0]} onClick={onClickPayMethod}>신용카드</MethodButton>
+                        <MethodButton checked={checked[1]} onClick={onClickPayMethod}>계좌이체(무통장)</MethodButton>
+                        <MethodButton checked={checked[2]} onClick={onClickPayMethod}>네이버페이</MethodButton>
+                        <MethodButton checked={checked[3]} onClick={onClickPayMethod}>카카오페이</MethodButton>
+                        <MethodButton checked={checked[4]} onClick={onClickPayMethod}>휴대전화</MethodButton>                 
+                    </ButtonWrap>
+                    <PayButton onClick={onClickPayment}>2000원 결제하기</PayButton>
                 </PaymentDiv>
             </PaymentWrap>
         </PaymentContainer>
@@ -130,7 +136,7 @@ export default function Payment() {
 
 const BackgroundDiv = styled.div`
     border: 1px solid #F8F8FA;
-    width: 100vw;
+    width: 99vw;
     height: 100vh;
     background-color: #F8F8FA;
 `
@@ -139,13 +145,13 @@ const PaymentContainer = styled.div`
     /* border: 3px solid yellow;    */
     width: 78rem; 
     margin: 0 auto;
-    margin-top: 3rem;
+    margin-top: 2.5rem;
 `
 
 const PaidGoodsDiv = styled.div`
     /* border: 3px solid black; */
     display: flex;
-    margin-bottom: 1rem;
+    margin-bottom: 1.5rem;
     background-color: #FFFFFF;
 
     img {
@@ -182,10 +188,12 @@ const PaymentWrap = styled.div`
 const AgreementDiv = styled.div`
     /* border: 3px solid green; */
     width: 60rem;
+    padding: 2rem;
     background-color: #FFFFFF;
 
     h1 {
-        font-size: 1.5rem;
+        font-size: 1.3rem;
+        margin-bottom: 1.5rem;
     }
 
     h2 {
@@ -195,18 +203,26 @@ const AgreementDiv = styled.div`
 
 const AgreementCheck = styled.div`
     float: right;
-    margin-top: 1rem;
-    font-weight: 550;
+    margin-top: 2.5rem;
+
+    span {
+        font-size: 1.3rem;
+        font-weight: 600;
+    }
 `
 
 const PaymentDiv = styled.div`
     /* border: 3px solid blue; */
     width: 40rem;
     margin-left: 1.5rem;
+    padding: 1rem;
+    padding-top: 2rem;
     background-color: #FFFFFF;
-    
+
     h1 {
-        font-size: 1.5rem;
+        margin-bottom: 1.5rem;
+        margin-left: 1.5rem;
+        font-size: 1.3rem;
     }
 `
 
@@ -221,6 +237,13 @@ const Price = styled.div`
     }
 `
 
+const ButtonWrap = styled.div`
+    display: flex;
+    flex-wrap: wrap;
+    margin-left: 1.5rem;
+    margin-bottom: 3rem;
+`
+
 const MethodButton = styled.button`
     width: 8rem;
     height: 2rem;
@@ -230,10 +253,11 @@ const MethodButton = styled.button`
 
 const PayButton = styled.button`
     display: block;
-    width: 15rem;
-    height: 2rem;
+    width: 22rem;
+    height: 2.5rem;
     border: none;
-    margin: 1rem 0;
+    margin: auto;
+    margin-bottom: 1rem;
     border-radius: 25px;
     background-color: #2F3EFF;
     font-size: 0.9rem;
