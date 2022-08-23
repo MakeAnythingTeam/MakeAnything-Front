@@ -77,15 +77,13 @@ export default function Main() {
         console.log(goodsName, goodsPrice, goodsDescription);
         
         // 상품 업로드 정보 서버로 보낸 후
-        /*
         axios.post('/model', {
             model_name: goodsName,
             price: goodsPrice,
             content: goodsDescription
         })
-        */
 
-        // 업로드 후 페이지로 이동
+        // 업로드 후 등록된 상세 페이지로 이동
         alert('상품 등록이 완료되었습니다!');
     }
   
@@ -146,8 +144,7 @@ export default function Main() {
                     <GoodsInfoInput 
                         id="goods-price"
                         type="number" 
-                        placeholder="숫자만 입력하세요" 
-                        value={goodsPrice}
+                        value={goodsPrice || 0}
                         onChange={onGoodsPriceHandler}
                     />
                     <h2>파일 업로드</h2>
