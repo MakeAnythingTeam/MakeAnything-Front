@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { ReactComponent as PlusIcon } from "../assets/plus.svg";
 
-export default function Main() {
+export default function Upload() {
     const [showImages, setShowImages] = useState([]);
     const [goodsName, setGoodsName] = useState('');
     const [goodsPrice, setGoodsPrice] = useState();
@@ -77,7 +77,7 @@ export default function Main() {
         console.log(goodsName, goodsPrice, goodsDescription);
         
         // 상품 업로드 정보 서버로 보낸 후
-        axios.post('/model', {
+        axios.post('/models', {
             model_name: goodsName,
             price: goodsPrice,
             content: goodsDescription
