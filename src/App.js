@@ -5,7 +5,6 @@ import Category from "./pages/Category";
 import QnA from "./pages/QnA";
 import Community from "./pages/Community";
 import Login from "./pages/Login";
-import MyPage from "./pages/MyPage";
 import ItemDetail from "./pages/ItemDetail";
 import Search from "./pages/Search";
 import CategoryItem from './components/CategoryItem';
