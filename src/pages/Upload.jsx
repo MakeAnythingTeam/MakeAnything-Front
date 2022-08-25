@@ -8,6 +8,7 @@ export default function Upload() {
     const [goodsName, setGoodsName] = useState('');
     const [goodsPrice, setGoodsPrice] = useState();
     const [goodsDescription, setGoodsDescription] = useState('');
+    const [category, setCategory] = useState('');
     const [tagItem, setTagItem] = useState('');
     const [tagList, setTagList] = useState([]);
     const [fileName, setFileName] = useState('');
@@ -23,6 +24,10 @@ export default function Upload() {
     const onGoodsDescriptionHandler = (e) => {
         setGoodsDescription(e.currentTarget.value);
     }
+
+    const onCategoryHandler = (e) => {
+        setCategory(e.currentTarget.value);
+    };
 
     const onKeyPress = (e) => {
         if (e.target.value.length !== 0 && e.key === 'Enter') {
@@ -68,7 +73,7 @@ export default function Upload() {
     };
 
     useEffect(() => {
-        // spna 추가
+        // span 추가
         const fileNameSpan = document.getElementById("file-name");
         fileNameSpan.innerHTML = fileName;
     }, [fileName]);
@@ -77,16 +82,16 @@ export default function Upload() {
         console.log(goodsName, goodsPrice, goodsDescription);
         
         // 상품 업로드 정보 서버로 보낸 후
-        axios.post('/models', {
-            model_name: goodsName,
-            price: goodsPrice,
-            content: goodsDescription
+        axios.post('api/models', {
+            // form data request 
+        }).then((res)=>{
+            console.log(res.data);
         })
 
         // 업로드 후 등록된 상세 페이지로 이동
         alert('상품 등록이 완료되었습니다!');
     }
-  
+    
     return (
         <GoodsDiv>
             <GoodsWrap>
@@ -134,7 +139,7 @@ export default function Upload() {
                         />
                     </TagBox>
                     <h2>카테고리</h2>
-                    <select id="goods-category">
+                    <select id="goods-category" onChange={onCategoryHandler}>
                         <option value="전체">전체</option>
                         <option value="건축물">건축물</option>
                         <option value="로봇">로봇</option>
