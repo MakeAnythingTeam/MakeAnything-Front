@@ -11,6 +11,8 @@ import Search from "./pages/Search";
 import CategoryItem from './components/CategoryItem';
 import Payment from "./pages/Payment";
 import Upload from "./pages/Upload";
+import MyPageBuyList from './pages/MyPageBuyList';
+import MyPageSellList from './pages/MyPageSellList';
 
 function App() {
   return (
@@ -25,7 +27,9 @@ function App() {
         <Route path="/qna" element={<QnA />} />
         <Route path="/community" element={<Community />} />
         <Route path="/login" element={<Login />} />
-        <Route path="/mypage" element={<MyPage />} />
+        <Route path="/mypage" element={<MyPageBuyList />} />
+        <Route path='/mypage/buylist' element={<MyPageBuyList />} />
+        <Route path='/mypage/selllist' element={<MyPageSellList />} />
         <Route path="/detail/:id" element={<ItemDetail />} />
         <Route path="/search" element={<Search />} />
         <Route path="/payment" element={<Payment />} />
