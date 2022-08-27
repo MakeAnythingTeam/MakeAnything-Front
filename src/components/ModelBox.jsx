@@ -12,12 +12,27 @@ export default function Favorite({ index, model_id, img_path, model_name, model_
     const [favoriteModelArr, setFavoriteModelArr] = useState([...favoriteModelsDummy]);
 
     const onClickBookmark = () => {
+        // wish list 조회 
+        axios.get(`/api/users/${model_id}/wish`)
+        .then((Response) => {  
+            console.log(Response.data);
+        })
+        .catch((Error) => {console.log(Error)})
+        
         /* DATA UPDATE : dummy data -> REST API */
-        // axios.get('')
-        //     .then((Response) => {
-        //         setFavoriteModelArr(Response.data)
-        //     })
-        //     .catch((Error) => {console.log(Error)})
+        if(!bookmarkIcon) { 
+            console.log("북마크 등록");
+            axios.post(`/api/models/${model_id}/wish`, {
+                modelId: model_id
+            }).
+                then((Response) => {
+                    console.log(Response.data);
+                })
+                .catch((Error) => {console.log(Error)})
+        } else {
+            console.log("북마크 해제");
+           
+        }
 
         /* dummy data */
         if(!bookmarkIcon) { // 북마크 x -> 클릭 -> 북마크 등록

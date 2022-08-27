@@ -1,13 +1,27 @@
 // 메인 페이지 - 포디
-
-import React from 'react';
+import axios from 'axios';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import ModelBox from '../components/ModelBox';
 import SlideShow from '../components/SlideShow';
 import { favoriteModelsDummy } from './DummyData';
-import { newModelsDummy } from './DummyData';
 
 export default function Main() {
+    const [newModels, setNewModels] = useState([]);
+
+    useEffect(() => {
+        // 처름 랜더링 됐을 때 전체 model 조회
+        axios.get('/api/models')
+            .then((Response) => {
+                setNewModels(Response.data.data);
+                console.log(Response.data); 
+            })
+            .catch((Error) => {
+                console.log(Error);
+            });
+    }, []);
+
+    console.log(newModels);
 
     return (
         <div>
@@ -28,12 +42,12 @@ export default function Main() {
             <TitleText>New Model</TitleText>
             <MoreButton>+ More</MoreButton>
             <ModelBoxDiv>
-                {newModelsDummy.map((model, index) => (
+                {newModels.map((model, index) => (
                     <ModelBox
                         key={index}
                         model_id={model.id}
-                        img_path={model.img_path}
-                        model_name={model.name}    
+                        img_path={model.modelImageUrl}
+                        model_name={model.modelName}    
                         model_price={model.price}
                     />
                 ))}
