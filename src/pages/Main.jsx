@@ -1,6 +1,7 @@
 // 메인 페이지 - 포디
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import ModelBox from '../components/ModelBox';
 import SlideShow from '../components/SlideShow';
@@ -8,6 +9,7 @@ import { favoriteModelsDummy } from './DummyData';
 
 export default function Main() {
     const [newModels, setNewModels] = useState([]);
+    const navigate = useNavigate();
 
     useEffect(() => {
         // 처름 랜더링 됐을 때 전체 model 조회
@@ -21,13 +23,17 @@ export default function Main() {
             });
     }, []);
 
+    const onClickMore = () => {
+        navigate('/category');
+    };
+
     console.log(newModels);
 
     return (
         <div>
             <SlideShow/>
             <TitleText>Favorite Model</TitleText>
-            <MoreButton>+ More</MoreButton>
+            <MoreButton onClick={onClickMore}>+ More</MoreButton>
             <ModelBoxDiv>
                 {favoriteModelsDummy.map((model, index) => (
                     <ModelBox
@@ -40,7 +46,7 @@ export default function Main() {
                 ))}
             </ModelBoxDiv>
             <TitleText>New Model</TitleText>
-            <MoreButton>+ More</MoreButton>
+            <MoreButton onClick={onClickMore}>+ More</MoreButton>
             <ModelBoxDiv>
                 {newModels.map((model, index) => (
                     <ModelBox
