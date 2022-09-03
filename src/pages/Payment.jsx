@@ -11,6 +11,7 @@ export default function Payment() {
     
     const [payMethod, setPayMethod] = useState('');
     const [checked, setChecked] = useState([false, false, false, false, false]);
+    const [agreement, setAgreement] = useState(false);
 
     useEffect(() => {
         const jquery = document.createElement("script");
@@ -28,6 +29,10 @@ export default function Payment() {
         }
     }, []);
     
+    const onAgreementdHandler = (event) => {
+        setAgreement(event.target.checked)
+      }
+
     const onClickPayMethod = (e) => {
         const method = e.target.innerText;
         const temp = checked;
@@ -56,20 +61,25 @@ export default function Payment() {
         const { IMP } = window;
         IMP.init('imp82151276'); // 가맹점 식별코드
 
-        const data = {
-            pg: "html5_inicis",
-            pay_method: "card",
-            merchant_uid: `ORD${new Date().getTime()}`, // 주문 번호*
-            name: "결제 api 테스트", // 주문명*
-            amount: 1, // 금액*
-            buyer_email: "tjgus9966@gmail.com", // 구매자 이메일
-            buyer_name: "정서현", // 구매자 이름
-            buyer_tel: "01012345678", // 구매자 전화번호
-        }
-        IMP.request_pay(data, callback);
-
         // 결제 방법 -> 나중에 추가
         console.log(payMethod);
+
+        // 동의 체크 했을 때 결제 요청
+        if(agreement === true) {
+            const data = {
+                pg: "html5_inicis",
+                pay_method: "card",
+                merchant_uid: `ORD${new Date().getTime()}`, // 주문 번호*
+                name: "결제 api 테스트", // 주문명*
+                amount: 1, // 금액*
+                buyer_email: "tjgus9966@gmail.com", // 구매자 이메일
+                buyer_name: "정서현", // 구매자 이름
+                buyer_tel: "01012345678", // 구매자 전화번호
+            }
+            IMP.request_pay(data, callback);
+        } else {
+            alert('저작권법에 동의해주세요!');
+        }
     }
 
     const callback = (response) => {
@@ -77,13 +87,15 @@ export default function Payment() {
     
         if(success) {
             axios({
-                url: `http://3.39.161.226:8080/orders/${state}`,
+                // url: `api/orders/${state}`,
+                url: `api/orders/1`,
                 method: "post",
                 data: {
                     imp_uid: imp_uid,
                     merchant_uid: merchant_uid
                 }
             }).then((data) => {
+                console.log(data);
                 alert('결제 성공!');
             })
         } else {
@@ -110,7 +122,7 @@ export default function Payment() {
                     <span>저작권 법 관련 내용이 들어가는 자리입니다. 아직 저작권법에 대한 자세한 내용이 없어서 공란으로 둡니다.<br/><br/></span>
                     <AgreementCheck>
                         <span>동의합니다 </span>
-                        <input type="checkbox"></input>
+                        <input type="checkbox" onChange={onAgreementdHandler}></input>
                     </AgreementCheck>
                 </AgreementDiv>
                 <PaymentDiv>
