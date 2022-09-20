@@ -1,10 +1,10 @@
 ## 👩‍👩‍👧‍👧 팀원 소개
-- [“PM & Server” 환](https://political-donut-900.notion.site/Hwan-c4ba465599a0487d8665e761a508c50e)  
-- [“Designer” 준](https://political-donut-900.notion.site/June-c4ecca5b0e7c42ccbc3cbf674ec00544)
-- [“Web” 포디](https://political-donut-900.notion.site/Fody-d6ec571fa31a46bda31ac4364f38d5d5)
-- [“Web” 크리스](https://political-donut-900.notion.site/Chris-2398d7d761a74bdeaa47517a7baf3efa)
-- [“Web” 클레어](https://political-donut-900.notion.site/Claire-1c0c1e857595426eadc5cdb30c26ca05)
-- [“Server” 바란](https://political-donut-900.notion.site/Baran-f42fc35fa70145d59dad4f3c0a209e62)  
+- [“PM & Server” **환**](https://political-donut-900.notion.site/Hwan-c4ba465599a0487d8665e761a508c50e)  
+- [“Designer” **준**](https://political-donut-900.notion.site/June-c4ecca5b0e7c42ccbc3cbf674ec00544)
+- [“Web” **포디**](https://political-donut-900.notion.site/Fody-d6ec571fa31a46bda31ac4364f38d5d5)
+- [“Web” **크리스**](https://political-donut-900.notion.site/Chris-2398d7d761a74bdeaa47517a7baf3efa)
+- [“Web” **클레어**](https://political-donut-900.notion.site/Claire-1c0c1e857595426eadc5cdb30c26ca05)
+- [“Server” **바란**](https://political-donut-900.notion.site/Baran-f42fc35fa70145d59dad4f3c0a209e62)  
 <br><br>   
 
 ## 💡 기획 배경
@@ -43,36 +43,47 @@
 
 ## 👀 MakeAnything 미리보기
 ### 로그인 페이지
-![Login Page](../../../my/UMC/readme/LoginPage.gif)
+![LoginPage](https://user-images.githubusercontent.com/63582234/191235392-b78ac281-6c91-4ea9-85eb-f8182b5ce215.gif)  
+
 ### 메인 페이지
-![Main Page](../../../my/UMC/readme/MainPage.gif)
+![MainPage](https://user-images.githubusercontent.com/63582234/191234678-6ea4b115-d32c-4d64-bba5-a68e5a58ec44.gif)  
+
 ### 마이 페이지
-![My Page](../../../my/UMC/readme/MyPage.gif)
+![My Page](https://user-images.githubusercontent.com/63582234/191234624-017ba6fc-f155-457a-9b28-84b96a8125cb.gif)  
+
 ### 업로드 페이지
-![Upload Page](../../../my/UMC/readme/UploadPage.gif)
+![Upload Page](https://user-images.githubusercontent.com/63582234/191229878-7fe949ea-ab79-449b-9179-56ca6fd3380b.gif)  
+
 ### 구매완료 페이지
-![Complete Page](../../../my/UMC/readme/CompletePage.gif)
+![Complete Page](https://user-images.githubusercontent.com/63582234/191233392-651cb43e-f73e-431e-a276-336910c862a5.gif)  
+
 ### 결제 페이지
-![Payment Page](../../../my/UMC/readme/PaymentPage.gif)
+![Payment Page](https://user-images.githubusercontent.com/63582234/191234607-bf247d1c-ac9c-4004-ba86-a99ba3c2c4ac.gif)  
+
 ### 검색 페이지
-![Search Page](../../../my/UMC/readme/SearchPage.gif)
+![SearchPage](https://user-images.githubusercontent.com/63582234/191235358-4e14c9fc-21be-417f-9fd2-97e92f48acf1.gif)  
+
 ### 카테고리 페이지
-![Category Page](../../../my/UMC/readme/CategoryPage.gif)
+![Category Page](https://user-images.githubusercontent.com/63582234/191228924-ef45a475-082e-41db-aec7-4243d26403c6.gif)  
+
 ### 상세 페이지
-![Detail Page](../../../my/UMC/readme/DetailPage.gif)  
+![DetailPage](https://user-images.githubusercontent.com/63582234/191235956-5e6c5329-9391-49b0-856e-d5c9c80263a5.gif)  
+
 <br><br>  
 
 ## 🧑‍💻 개발 진행 
 ### FlowChart
-![FlowChart](../../../my/UMC/readme/flowchart.png)  
+![flowchart](https://user-images.githubusercontent.com/63582234/191224640-8b6a0036-ae4a-4e82-843d-9ef3d387e28a.png)
+
 
 ### Design
-![Design](../../../my/UMC/readme/desing1.png)  
-![Design](../../../my/UMC/readme/design2.png)  
-![Design](../../../my/UMC/readme/design3.png)  
+![desing1](https://user-images.githubusercontent.com/63582234/191224571-3199c7cd-e0ce-4128-b433-6d9adcf81f05.png)
+![design2](https://user-images.githubusercontent.com/63582234/191224567-76fec2f6-04c7-42f6-8ea3-c20b4ef25c59.png)
+![design3](https://user-images.githubusercontent.com/63582234/191224569-91a945a3-ea2e-4f79-8e46-a106952b9437.png)
 
 ### ERD
-![ERD](../../../my/UMC/readme/ERD.png)  
+![ERD](https://user-images.githubusercontent.com/63582234/191224495-b1811bc1-534b-4aa2-95fe-23ebd001c4e7.png)
+
 <br><br>  
 
 ## 🛠 Tech Stacks
